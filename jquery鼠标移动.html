@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>jquery动画</title>
+	<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+            var lastY = $(window).height()/2;
+            var lastX = $(window).width()/2;
+            $("#divs").mousemove(function(event){
+                event = event || window.event;
+                if(lastY > event.pageY){
+                    $("#info").html(lastY+"在上Y："+event.pageY);
+                }else {
+                    $("#info").html(lastY+"在下Y："+event.pageY);
+                }
+
+                if(lastX > event.pageX){
+                    $("#info2").html(lastX+"在左X："+event.pageX);
+                }else{
+                    $("#info2").html(lastX+"在右X："+event.pageX);
+                }
+            });
+		});
+
+	</script>
+	
+	<style type="text/css">
+		body{margin:0px;padding:0px;font-size:12px;}
+		/**左右导航内容定义 */
+		.daohang1{border:1px solid #666;width:90px;padding:5px;margin-bottom:5px;display:block;}
+		.daohang1:hover{background:#fff;cursor:pointer;}
+
+		.daohang-left{background:yellow;height:500px;text-align:left;border:1px solid #999;margin:10px;padding-left:10px;}
+	</style>
+  </head>
+  <body>
+
+	<div id="divs" class="daohang-left">
+		<div id="info" class="daohang1">左边固定用例</div>
+		<div id="info2" class="daohang1">刘德华</div>
+		<div class="daohang1">周海媚</div>
+		<div class="daohang1">张惠妹</div>
+		<div class="daohang1">郑源</div>
+		<div class="daohang1">周杰伦</div>
+		<div class="daohang1">张学友</div>
+	</div>
+
+  </body>
+</html>

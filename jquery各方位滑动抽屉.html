@@ -1,0 +1,176 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<title>jquery各方位滑动抽屉</title>
+	<script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+	<script type="text/javascript">
+	
+		$(document).ready(function(){
+			inout(".daohang-head",{top:"-30px"},{top:"0px"});
+			inout(".daohang-foot",{bottom:"-30px"},{bottom:"0px"});
+			inout(".daohang-left",{left:"-110px"},{left:"0px"});
+			inout(".daohang-right",{right:"-110px"},{right:"0px"});
+		});
+		
+		function inout(object,leave,enter){
+			//方式一 灵活
+			/*
+			var timeout = false;    
+			$(object).mouseleave(function(){
+				if (timeout){clearTimeout(timeout);}    
+				timeouthead = setTimeout(function(){
+					$(object).animate(leave);
+				},500);   
+			});
+			
+			$(object).mouseenter(function(){
+				 if (timeouthead){clearTimeout(timeout);}    
+				 timeout = setTimeout(function(){
+					$(object).animate(enter);
+				 },200); 
+			});
+			*/
+	
+			//方式二
+			/*
+			$(object).hover(function(){
+				$(this).stop(true,false).animate(enter,1);
+			},function(){
+				$(this).stop(true,false).animate(leave,500);
+			});
+			*/
+			
+			//方式三 (推荐)
+			/*
+			$(object).hover(function(){
+				$(this).animate(enter, {queue: false});
+			}, function() {
+				$(this).animate(leave, {queue: false});
+			});
+			*/
+
+			//方式四(首荐)
+			$(object).hover(function(){
+				if (!$(this).hasClass('animated')) {
+					$(this).dequeue().finish().animate(enter);
+				}
+			}, function() {
+				$(this).addClass('animated').animate(leave, "normal", "linear", function() {
+					$(this).removeClass('animated').dequeue();
+				});
+			});			
+
+		}
+		
+	</script>
+	
+	<style type="text/css">
+		body{margin:0px;padding:0px;font-size:12px;}
+		.low-center{background:#ccc;padding:10px 20px;line-height:25px;text-align:left;}
+		
+		/**上下导航内容定义**/
+		.daohang{border:1px solid #666;width:150px;display:inline;padding:5px;}
+		.daohang:hover{background:#fff;cursor:pointer;}
+		
+		/**左右导航内容定义 */
+		.daohang1{border:1px solid #666;width:90px;padding:5px;margin-bottom:5px;}
+		.daohang1:hover{background:#fff;cursor:pointer;}
+		
+		.daohang-head{background:yellow;padding:10px;z-index:100;text-align:center;
+		            position:fixed;width:100%;border-bottom:1px solid #999;
+					opacity:.90;filter:alpha(opacity=90);top:-30px;}
+		
+		.daohang-foot{ background:yellow;padding:10px;z-index:100;text-align:center;
+					position:fixed;width:100%;border-top:1px solid #999; 
+					opacity:.90;filter:alpha(opacity=90);bottom:-30px;}
+		
+		.daohang-left{background:yellow;padding:10px;z-index:101;height:100%;text-align:left;
+		             position:fixed;width:100px;border-right:1px solid #999;
+					 opacity:.90;filter:alpha(opacity=90);left:-110px;}
+					 
+		.daohang-right{background:yellow;padding:10px;z-index:101;height:100%;text-align:left;
+		             position:fixed;width:100px;border-left:1px solid #999;
+					 opacity:.90;filter:alpha(opacity=90);right:-110px;}
+	</style>
+  </head>
+  <body>
+	<div class="daohang-head">
+		<div class="daohang">头部固定用例</div>
+		<div class="daohang">刘德华</div>
+		<div class="daohang">周海媚</div>
+		<div class="daohang">张惠妹</div>
+		<div class="daohang">郑源</div>
+		<div class="daohang">周杰伦</div>
+		<div class="daohang">张学友</div>
+	</div>
+	
+	<div class="daohang-foot">
+		<div class="daohang">脚部分部固定用例</div>
+		<div class="daohang">刘德华</div>
+		<div class="daohang">周海媚</div>
+		<div class="daohang">张惠妹</div>
+		<div class="daohang">郑源</div>
+		<div class="daohang">周杰伦</div>
+		<div class="daohang">张学友</div>
+	</div>
+
+	<div class="daohang-left">
+		<div class="daohang1">左边固定用例</div>
+		<div class="daohang1">刘德华</div>
+		<div class="daohang1">周海媚</div>
+		<div class="daohang1">张惠妹</div>
+		<div class="daohang1">郑源</div>
+		<div class="daohang1">周杰伦</div>
+		<div class="daohang1">张学友</div>
+	</div>
+	
+	<div class="daohang-right">
+		<div class="daohang1">右边固定用例</div>
+		<div class="daohang1">刘德华</div>
+		<div class="daohang1">周海媚</div>
+		<div class="daohang1">张惠妹</div>
+		<div class="daohang1">郑源</div>
+		<div class="daohang1">周杰伦</div>
+		<div class="daohang1">张学友</div>
+	</div>	
+	
+    <div class="low-center">
+		1.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		2.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		3.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		4.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		5.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		6.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		7.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		8.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		9.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		10.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		11.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		12.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		13.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		14.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		15.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		16.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		17.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		18.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		19.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		20.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		21.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		22.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		23.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		24.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		25.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		26.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		27.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		28.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		29.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		30.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+		31.这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容这里是内容
+	</div>
+		
+  </body>
+</html>

@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <title>jquery各方位滑动抽屉</title>
+    <script type="text/javascript" src="jquery/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" src="js/rotate/jquery.rotate.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#img1').rotate({angle: 45});
+
+            $("#img2").rotate({
+                bind: {
+                    mouseover: function () {
+                        $(this).rotate({animateTo: 180});
+                    },
+                    mouseout: function () {
+                        $(this).rotate({animateTo: 0});
+                    }
+                }
+            });
+
+            var angle = 0;
+            setInterval(function () {
+                angle += 3;
+                $("#img3").rotate(angle);
+            }, 50);
+
+            var rotation = function () {
+                $("#img4").rotate({
+                    angle: 0,
+                    animateTo: 360,
+                    callback: rotation
+                });
+            }
+            rotation();
+
+
+            var rotation2 = function () {
+                $("#img5").rotate({
+                    angle: 0,
+                    animateTo: 360,
+                    callback: rotation2,
+                    easing: function (x, t, b, c, d) {        // t: current time, b: begInnIng value, c: change In value, d: duration
+                        return c * (t / d) + b;
+                    }
+                });
+            }
+            rotation2();
+
+            $("#img6").rotate({
+                bind: {
+                    click: function () {
+                        $(this).rotate({ angle: 0, animateTo: 180, easing: $.easing.easeInOutExpo })
+                    }
+                }
+
+            });
+
+
+            var value2 = 0;
+            $("#img7").rotate({
+                bind: {
+                    click: function () {
+                        value2 += 90;
+                        $(this).rotate({ animateTo: value2})
+                    }
+                }
+            });
+        });
+
+    </script>
+
+    <style type="text/css">
+        body { margin: 0px;padding: 0px;font-size: 12px;}
+    </style>
+</head>
+<body>
+
+    <img id="img1" title="image1" src="images/chrome.png" width="256" height="256"/>
+    <img id="img2" title="image2" src="images/chrome.png" width="256" height="256"/>
+    <img id="img3" title="image3" src="images/chrome.png" width="256" height="256"/>
+    <img id="img4" title="image4" src="images/chrome.png" width="256" height="256"/>
+    <img id="img5" title="image5" src="images/chrome.png" width="256" height="256"/>
+    <img id="img6" title="image6" src="images/chrome.png" width="256" height="256"/>
+    <img id="img7" title="image7" src="images/chrome.png" width="256" height="256"/>
+
+</body>
+</html>

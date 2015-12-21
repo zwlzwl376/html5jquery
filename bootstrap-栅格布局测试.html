@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="zh-CN">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="css/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <title>bootstrap-栅格布局测试</title>
+    <style type="text/css">
+        [class*=col-]{
+            text-align:center;
+            border-bottom:1px solid #e36a41;
+            border-left: 1px solid #e36a41;
+            background: #2ed1e3;}
+        .row{
+            border-right: 1px solid #e36a41;}
+        .container-fluid .row{
+            border-top: 1px solid #e36a41;}
+        .container-fluid{
+            margin:10px 10px 0px 10px;}
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!4444444444444444444444444444444444444444444444444444444444444444</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">hello!</div>
+        </div>
+    </div>
+</body>
+</html>

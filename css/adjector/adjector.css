@@ -1,0 +1,79 @@
+/* ====================================
+ * adjector.css
+ * ====================================
+ * Copyright 2014 Arsh Shah Dilbagi.
+ * http://robo.im
+ *
+ * ================================= */
+.adjecting {
+  display: inline-block;
+  position: relative;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  -o-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transform-origin-x: 50%;
+}
+
+.adjecting .front-face, .adjecting .back-face {
+  display: inline-block;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.adjecting .front-face {
+  position: absolute;
+}
+
+.adjecting .back-face {
+  position: relative;
+}
+
+/* ======================================================
+ * CSS for Demo pages only - Not required with the plugin
+ * =================================================== */
+#robo-wrapper {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+#robo-wrapper h1 {
+  font-family: 'Raleway', sans-serif;
+  font-size: 100px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+#robo-wrapper #option-details {
+  display: inline-block;
+  font-size: 18px;
+  padding: 2px 7px;
+  margin-bottom: 20px;
+  background: rgba(255, 255, 255, 0.08);
+  font-family: monospace;
+  border-left: 3px solid #fff;
+  border-right: 3px solid #fff;
+}
+
+.paragraph-content #heading {
+  width: 400px;
+  height: 70px;
+  margin: 0 auto;
+  font-family: 'Raleway', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.paragraph-content #sub {
+  width: 400px;
+  height: 300px;
+  margin: 0 auto;
+  font-size: 20px;
+  text-align: justify;
+}
